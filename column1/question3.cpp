@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <random>
 #include <chrono>
-#include "utils.h"
+#include "../utils.h"
 
 constexpr int dataSize = 10000000;
 
