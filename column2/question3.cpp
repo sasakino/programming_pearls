@@ -3,26 +3,23 @@
 #include <vector>
 #include "../utils.h"
 
-void rotate(std::vector<int>& v, const int n, const int i) {
+void rotate(std::vector<int>& v, const int i) {
+  const int n = v.size();
 
-  int t = v[0];
+  for(int cnt = 0; cnt < std::gcd(i, n); cnt++) {
+    int t = v[cnt];
+    int dst = cnt;
 
-  int dst = 0;
+    while(1) {
+      int src = dst + i; 
+      if (src >= n) src = src % n;
+      if (src == cnt) break;
+      v[dst] = v[src];
+      dst = src;
+    }
 
-  int k = 0;
-  int src = k++ * i;
-
-  while(1) {
-    std::swap(v[dst], v[src]);
-
-    dst = src;
-    int buf = k++ * i;
-    int mod = buf % n;
-    if(mod == 0) break;
-    src = mod > 0 ? mod : buf;
+    v[dst] = t;
   }
-
-  v[src] = t;
 }
 
 int main(int argc, char** argv) {
@@ -44,7 +41,7 @@ int main(int argc, char** argv) {
 
   std::iota(v.begin(), v.end(), 0);
 
-  rotate(v, n, i);
+  rotate(v, i);
 
   dump(v);
 
