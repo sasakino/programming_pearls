@@ -1,9 +1,21 @@
 #include <iostream>
 #include <vector>
+#include <array>
 #include <chrono>
 
 template <typename T>
 void dump(std::vector<T> &data) 
+{
+  for(auto d : data)
+  {
+    std::cout << d << " ";
+  }
+
+  std::cout << std::endl;
+}
+
+template <typename T, unsigned int U>
+void dump(std::array<T, U> &data) 
 {
   for(auto d : data)
   {
